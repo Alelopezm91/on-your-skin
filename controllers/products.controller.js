@@ -3,9 +3,9 @@ const Products = require("../models/men-products.model");
 const categories = Object.keys(require("../data/categories.json"));
 
 module.exports.list = (req, res, next) => {
-  Products.find()
+  Products.find({ parent: true })
     .sort({ createdAt: "desc" })
-    .limit(9)
+    .limit(20)
     .then((products) => res.render("products/list", { products }))
     .catch((error) => next(error));
 };

@@ -26,7 +26,6 @@ const menProductsSchema = new Schema(
     },
     fashion_main_description: {
       type: String,
-      minlength: [20, "Descrpition must coint at least 20 characters "],
     },
     sizes: {
       type: String,
@@ -37,6 +36,9 @@ const menProductsSchema = new Schema(
       product_mp_id:{
         type:String,
         required: true,
+      },
+      parent: {
+        type: Boolean
       }
   
   },
