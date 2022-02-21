@@ -1,8 +1,9 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
+require("../config/db.config");
 const products= require("../data/men-products.json");
-const Products = require("../models/men-products.model");
+const Product = require("../models/men-products.model");
 
 mongoose.connection.once("open", () => {
   console.info(
@@ -13,15 +14,10 @@ mongoose.connection.once("open", () => {
     .dropDatabase()
     .then(() => `${mongoose.connection.db.databaseName} dropped!`)
     .then(() => {
-      products.forEach((products) => {
-        new Products({
-          ...products
-          fashion_product_type: ["Slips", "Boxers","Camisetas Interiores", "Calzoncillos largos "],
-          description: "lorem sentence grater than 10 characters",
-          capacity: Math.floor(Math.random() * 100 + 10),
-        })
+      products.forEach((product) => {
+        new Product(product)
           .save()
-          .then((prod) => console.log(`${prod.name} has been created!`))
+          .then((prod) => console.log(`${prod.title} has been created!`))
           .catch((err) => console.error(err));
       });
     })

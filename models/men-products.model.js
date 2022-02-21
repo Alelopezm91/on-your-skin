@@ -21,8 +21,8 @@ const menProductsSchema = new Schema(
       type: String,
     },
     fashion_product_type: {
-      type: [String],
-      default: [],
+      type: String,
+      enum:["Slips","Boxers","Camisetas Interiores", "Calzoncillos largos"],
     },
     fashion_main_description: {
       type: String,
@@ -34,6 +34,11 @@ const menProductsSchema = new Schema(
     fashion_secundary_color: {
       type: String,
     },
+      product_mp_id:{
+        type:String,
+        required: true,
+      }
+  
   },
   { timestamps: true })
 

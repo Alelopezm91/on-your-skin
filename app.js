@@ -23,6 +23,7 @@ app.use("/", router);
 app.use((req, res, next) => {
   next(createError(404, "Page not found"));
 });
+
 app.use((error, req, res, next) => {
   console.log(error);
   let status = error.status || 500;
