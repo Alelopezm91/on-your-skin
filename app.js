@@ -20,6 +20,7 @@ require("./config/hbs.config");
 const router = require("./config/routes.config");
 app.use("/", router);
 
+//Errors
 app.use((req, res, next) => {
   next(createError(404, "Page not found"));
 });
@@ -33,6 +34,9 @@ app.use((error, req, res, next) => {
     error: req.app.get("env") === "development" ? error : {},
   });
 });
+
+
+
 
 const PORT= Number(process.env.PORT || 3000) 
 app.listen(PORT, () =>{
