@@ -10,7 +10,10 @@ router.get("/products", products.list);
 
 //Auth routes//
 router.get("/register", auth.register)
+router.post("/register", auth.doRegister)
 router.get("/login", auth.login)
+
+
 
 
 
