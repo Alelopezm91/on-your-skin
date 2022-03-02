@@ -2,16 +2,26 @@ const express = require("express");
 const router = express.Router();
 const misc = require("../controllers/misc.controller");
 const products = require("../controllers/products.controller");
+const user = require('../models/User.model')
 const auth = require('../controllers/auth.controller')
+const passport = require('passport');
+const authMiddleware = require('../middlewares/auth.middleware');
 
 //Misc routes //
 router.get("/", misc.home);
 router.get("/products", products.list);
 
+//On your skin routes
+router.get('/', authMiddleware.isAuthenticated, misc.home)
+
+
 //Auth routes//
 router.get("/register", auth.register)
 router.post("/register", auth.doRegister)
 router.get("/login", auth.login)
+router.post("/login", auth.dologin)
+router.get('/activate/:token', auth.activate)
+router.get('/logout', auth.logout)
 
 
 
