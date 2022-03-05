@@ -9,6 +9,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 
 
 
+
 const SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/userinfo.email"
@@ -19,8 +20,14 @@ const SCOPES = [
 router.get("/", misc.home);
 router.get("/products", products.list);
 
+//Profile routes
+
+
+
+
 //On your skin routes
-router.get('/', authMiddleware.isAuthenticated, misc.home)
+
+
 
 
 //Auth routes//
@@ -32,6 +39,7 @@ router.get('/activate/:token', auth.activate)
 router.get('/login/google', passport.authenticate('google-auth', { scope: SCOPES  }))
 router.get('/auth/google/callback', auth.doLoginGoogle)
 router.get('/logout', auth.logout)
+
 
 
 

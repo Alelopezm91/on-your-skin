@@ -1,4 +1,4 @@
-const expressionSession = require('express-sesion');
+const expressionSession = require('express-session');
 const MongoStore = require('connect-mongo');
 const {DB} = require('./db.config');
 
