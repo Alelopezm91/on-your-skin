@@ -1,0 +1,27 @@
+.breadcrumb ul {
+    display: flex;
+}
+
+.breadcrumb li {
+    padding: 20px;
+}
+
+.btn-sizes{
+    font-size: 1em;
+    width:5em;
+}
+
+.description-text{
+    font-size: 1.3em;
+    width:200%;
+    text-align: justify;
+}
+
+.icon-liked {
+  color: red;
+}
+
+.icon-events-none {
+  pointer-events: none;
+  opacity: 0.5;
+} 

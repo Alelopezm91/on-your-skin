@@ -22,3 +22,16 @@ hbs.registerHelper("compare", function (currentPage, comparePage, className) {
 hbs.registerHelper("add", function(n1, n2) {
     return n1 + n2
 })
+
+hbs.registerHelper("userLikedProducts", function (options) {
+  const { product, likes } = options.hash;
+  if (
+    product &&
+    likes &&
+    likes.some((like) => like.product == product.id)
+  ) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});

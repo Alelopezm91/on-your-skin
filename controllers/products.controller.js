@@ -2,35 +2,44 @@ const mongoose = require("mongoose");
 const Products = require("../models/men-products.model");
 const categories = Object.keys(require("../data/categories.json"));
 const PER_PAGE=12;
+const Like = require("../models/like.model");
+const Comment=require("../models/comment.model")
 
 
 module.exports.list = (req, res, next) => {
-  const page= req.params.page ? Number (req.params.page) : 1;
-  Products.find({ parent: true })
-    .sort({ createdAt: "desc" })
-    .limit(PER_PAGE)
-    .skip((page-1)*PER_PAGE)
-    .then((products) => {
-      if (products.length > 0){
-        return Products.countDocuments({parent: true})
-        .then(count=>{
-          const pagesCount=Math.ceil(count/PER_PAGE)
-      res.render(
-        "products/list", 
-        { 
-          products, 
-          pagesCount,
-          page
-        }
-      );
-        })
-      }
+   const page= req.params.page ? Number (req.params.page) : 1;
+  const category = req.query.category 
+Products.find({
+      parent: true,
+      ...(category && { fashion_product_type: category }),
     })
+      .sort({ createdAt: "desc" })
+      .limit(PER_PAGE)
+      .skip((page - 1) * PER_PAGE)
+      .then((products) => {
+        if (products.length > 0) {
+          return Products.countDocuments({
+            parent: true,
+            ...(category && { fashion_product_type: category }),
+          }).then((count) => {
+            const pagesCount = Math.ceil(count / PER_PAGE);
+            res.render("products/list", {
+              products,
+              pagesCount,
+              page,
+              category,
+            });
+          });
+        } else {
+          console.log("NO hay productos");
+        }
+      })
     .catch((error) => next(error));
 };
 
 module.exports.detail = (req, res, next) => {
   Products.findById(req.params.id)
+  .populate("comments")
     .then((product) => {
       Products.find({ product_mp_id: product.product_mp_id, parent: false })
         .then(variants => {

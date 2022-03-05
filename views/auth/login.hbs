@@ -2,36 +2,32 @@
   <div class="col-4">
     <h2 class="text-center">Login</h2>
     <form autocomplete="off" class="mt-4" method="POST" action="/login">
-      <div class="form-group">
+      <div class="form-group mb-4">
         <label for="exampleInputEmail1">Email</label>
-        <input
-          value="{{user.email}}"
-          name="email"
-          type="email"
-          class="form-control {{#if errors.email}}is-invalid{{/if}}"
-          placeholder="Enter name"
-        >
+        <input value="{{user.email}}" name="email" type="email"
+          class="form-control {{#if errors.email}}is-invalid{{/if}}" placeholder="Enter name">
         {{#if errors.email}}
-          <small class="invalid-feedback">
-            {{errors.email}}
-          </small>
+        <small class="invalid-feedback">
+          {{errors.email}}
+        </small>
         {{/if}}
       </div>
-      <div class="form-group">
+      <div class="form-group mb-4">
         <label for="exampleInputPassword1">Password</label>
-        <input
-          name="password"
-          type="password"
-          class="form-control {{#if errors.password}}is-invalid{{/if}}"
-          placeholder="Password"
-        >
-         {{#if errors.password}}
-          <small class="invalid-feedback">
-            {{errors.password}}
-          </small>
+        <input name="password" type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}"
+          placeholder="Password">
+        {{#if errors.password}}
+        <small class="invalid-feedback">
+          {{errors.password}}
+        </small>
         {{/if}}
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary fa-solid fa-envelope mb-2">Login with email</button>
     </form>
+    <div class="mb-4">
+      <a href="/login/google" class="btn btn-danger border-0">
+        <i class="fa fa-google"> Login with Google</i>
+      </a>
+    </div>
   </div>
 </div>

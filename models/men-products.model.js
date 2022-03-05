@@ -42,7 +42,20 @@ const menProductsSchema = new Schema(
       }
   
   },
-  { timestamps: true })
+  { timestamps: true ,
+  toJSON: {
+    virtuals: true,
+    transform: (doc, ret) => {
+      ret.id = doc._id;
+      delete ret._id;
+      delete ret.__v;
+      delete ret.password;
+      delete ret.social;
+      return ret;
+    }
+  }
+})
+
 
   const Product = mongoose.model("Product", menProductsSchema);
   module.exports = Product;
