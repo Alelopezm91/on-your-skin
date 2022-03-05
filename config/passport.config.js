@@ -74,7 +74,8 @@ passport.use('local-auth', new LocalStrategy(
                 email,
                 googleID,
                 password: mongoose.Types.ObjectId(),
-                name
+                name,
+                active: true
               })
                 .then(createdUser => {
                   next(null, createdUser)

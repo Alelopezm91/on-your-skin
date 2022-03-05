@@ -65,7 +65,7 @@ const login = (req ,res ,next, provider) =>{
                 if(loginError) {
                     next(loginError)
                 }else {
-                    res.redirect('/')
+                    res.redirect('/profile')
                 }
             })
         }
