@@ -61,18 +61,18 @@ userSchema.pre("save", function (next) {
     bcrypt
       .hash(user.password, SALT_ROUNDS)
       .then((hash) => {
-        user.password = hash;
-        next();
+        user.password = hash
+        next()
       })
-      .catch((err) => next(err));
+      .catch((err) => next(err))
   } else {
-    next();
+    next()
   }
-});
+})
 
 userSchema.methods.checkPassword = function (password) {
-  return bcrypt.compare(password, this.password);
-};
+  return bcrypt.compare(password, this.password)
+}
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+const User = mongoose.model("User", userSchema)
+module.exports = User

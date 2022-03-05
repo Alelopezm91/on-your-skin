@@ -35,28 +35,29 @@ passport.use(
                 next(null, false, { error: "Email or password are incorrect" });
               } else {
                 if (user.active) {
-                  next(null, user);
+                  next(null, user)
                 } else {
                   next(null, false, {
                     error:
                       "Check your email. You have to activate your account",
-                  });
+                  })
                 }
               }
-            });
+            })
           }
         })
-        .catch((err) => next(err));
+        .catch((err) => next(err))
     }
   )
-);
+)
+
 passport.use(
   "google-auth",
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, next) => {
       console.log({ profile });
@@ -71,22 +72,23 @@ passport.use(
         })
           .then((user) => {
             if (user) {
-              next(null, user);
+              next(null, user)
             } else {
               return User.create({
                 email,
                 googleID,
                 password: mongoose.Types.ObjectId(),
                 name,
-              }).then((createdUser) => {
-                next(null, createdUser);
-              });
+                active: true
+              }).then(createdUser => {
+                next(null, createdUser)
+              })
             }
           })
-          .catch((err) => next(err));
+          .catch((err) => next(err))
       } else {
-        next(null, false, { error: "Error connecting to Google Auth" });
+        next(null, false, { error: "Error connecting to Google Auth" })
       }
     }
   )
-);
+)

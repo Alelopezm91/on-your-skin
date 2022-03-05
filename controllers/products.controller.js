@@ -9,32 +9,36 @@ const Comment=require("../models/comment.model")
 module.exports.list = (req, res, next) => {
    const page= req.params.page ? Number (req.params.page) : 1;
   const category = req.query.category 
+  Like.find({user: req.user.id})
+  .then(likes=>{
 Products.find({
-      parent: true,
-      ...(category && { fashion_product_type: category }),
-    })
-      .sort({ createdAt: "desc" })
-      .limit(PER_PAGE)
-      .skip((page - 1) * PER_PAGE)
-      .then((products) => {
-        if (products.length > 0) {
-          return Products.countDocuments({
-            parent: true,
-            ...(category && { fashion_product_type: category }),
-          }).then((count) => {
-            const pagesCount = Math.ceil(count / PER_PAGE);
-            res.render("products/list", {
-              products,
-              pagesCount,
-              page,
-              category,
-            });
-          });
-        } else {
-          console.log("NO hay productos");
-        }
-      })
-    .catch((error) => next(error));
+  parent: true,
+  ...(category && { fashion_product_type: category }),
+})
+  .sort({ createdAt: "desc" })
+  .limit(PER_PAGE)
+  .skip((page - 1) * PER_PAGE)
+  .then((products) => {
+    if (products.length > 0) {
+      return Products.countDocuments({
+        parent: true,
+        ...(category && { fashion_product_type: category }),
+      }).then((count) => {
+        const pagesCount = Math.ceil(count / PER_PAGE);
+        res.render("products/list", {
+          likes,
+          products,
+          pagesCount,
+          page,
+          category,
+        });
+      });
+    } else {
+      res.redirect("../views/error.hbs");
+    }
+  })
+  .catch((error) => next(error));
+  })
 };
 
 module.exports.detail = (req, res, next) => {

@@ -7,7 +7,7 @@ const sessionMaxAge = process.env.SESSION_AGE || 7;
 const sessionConfig = expressionSession({
   secret: process.env.COOKIE_SECRET || "Secret!!(change it)",
   resave: false,
-  saveUnitialized: false,
+  saveUninitialized: false,
   cookie: {
     secure: process.env.COOKIE_SECRET === "true" || false,
     maxAge: 24 * 3600 * 1000 * sessionMaxAge,

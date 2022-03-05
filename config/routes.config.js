@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const misc = require("../controllers/misc.controller");
 const products = require("../controllers/products.controller");
-const user = require("../models/User.model");
+const user = require("../controllers/user.controller");
 const auth = require("../controllers/auth.controller");
 const passport = require("passport");
 const authMiddleware = require("../middlewares/auth.middleware");
@@ -12,14 +12,15 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const SCOPES = [
   "https://www.googleapis.com/auth/userinfo.profile",
   "https://www.googleapis.com/auth/userinfo.email",
-];
-
+]
 
 //Misc routes //
 router.get("/", misc.home);
-router.get("/products", products.list);
-router.get("/products/detail/:id", products.detail);
-router.get("/products/:page", products.list);
+
+//Product routes//
+router.get("/products", authMiddleware.isAuthenticated, products.list);
+router.get("/products/detail/:id",authMiddleware.isAuthenticated, products.detail);
+router.get("/products/:page", authMiddleware.isAuthenticated, products.list);
 
 //On your skin routes
 router.get('/', authMiddleware.isAuthenticated, misc.home) 
@@ -37,7 +38,9 @@ router.get(
 router.get("/auth/google/callback", auth.doLoginGoogle);
 router.get("/logout", auth.logout);
 
-
+/* User routes */
+router.get('/profile', authMiddleware.isAuthenticated, user.profile)
+router.post('/like/:id', authMiddleware.isAuthenticated, user.doLike)
 
 
 
