@@ -7,6 +7,7 @@ const path = require("path");
 const passport = require("passport")
 
 require("./config/db.config");
+const sessionConfig = require('./config/session.config');
 
 const app= express ()
 
@@ -21,6 +22,8 @@ app.set("view engine", "hbs");
 
 require("./config/hbs.config");
 require("./config/passport.config")
+
+app.use(sessionConfig);
 
 app.use(passport.initialize())
 app.use(passport.session());
