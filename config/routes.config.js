@@ -18,9 +18,9 @@ const SCOPES = [
 router.get("/", misc.home);
 
 //Product routes//
-router.get("/products", authMiddleware.isAuthenticated, products.list);
-router.get("/products/detail/:id",authMiddleware.isAuthenticated, products.detail);
-router.get("/products/:page", authMiddleware.isAuthenticated, products.list);
+router.get("/products", products.list);
+router.get("/products/detail/:id", products.detail);
+router.get("/products/:page", products.list);
 
 //On your skin routes
 router.get('/', authMiddleware.isAuthenticated, misc.home) 

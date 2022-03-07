@@ -3,7 +3,7 @@ const Products = require("../models/men-products.model");
 const categories = Object.keys(require("../data/categories.json"));
 const PER_PAGE=12;
 const Like = require("../models/like.model");
-const Comment=require("../models/comment.model")
+
 
 
 module.exports.list = (req, res, next) => {
@@ -43,7 +43,6 @@ Products.find({
 
 module.exports.detail = (req, res, next) => {
   Products.findById(req.params.id)
-  .populate("comments")
     .then((product) => {
       Products.find({ product_mp_id: product.product_mp_id, parent: false })
         .then(variants => {

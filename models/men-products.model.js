@@ -22,7 +22,7 @@ const menProductsSchema = new Schema(
     },
     fashion_product_type: {
       type: String,
-      enum:["Slips","Boxers","Camisetas Interiores", "Calzoncillos largos"],
+      enum: ["Slips", "Boxers", "Camisetas Interiores", "Calzoncillos largos"],
     },
     fashion_main_description: {
       type: String,
@@ -33,28 +33,33 @@ const menProductsSchema = new Schema(
     fashion_secundary_color: {
       type: String,
     },
-      product_mp_id:{
-        type:String,
-        required: true,
-      },
-      parent: {
-        type: Boolean
-      }
-  
-  },
-  { timestamps: true ,
-  toJSON: {
-    virtuals: true,
-    transform: (doc, ret) => {
-      ret.id = doc._id;
-      delete ret._id;
-      delete ret.__v;
-      delete ret.password;
-      delete ret.social;
-      return ret;
+    product_mp_id: {
+      type: String,
+      required: true,
+    },
+    parent: {
+      type: Boolean,
+    },
+    RSVP:{
+      type:Number,
+      required: true,
     }
+  },
+  {
+    timestamps: true,
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        ret.id = doc._id;
+        delete ret._id;
+        delete ret.__v;
+        delete ret.password;
+        delete ret.social;
+        return ret;
+      },
+    },
   }
-})
+);
 
 
   const Product = mongoose.model("Product", menProductsSchema);
