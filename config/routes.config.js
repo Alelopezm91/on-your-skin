@@ -6,8 +6,10 @@ const user = require("../controllers/user.controller");
 const auth = require('../controllers/auth.controller')
 const passport = require('passport');
 const authMiddleware = require('../middlewares/auth.middleware');
-const shopcart = require('../controllers/cart.controller')
-
+const shopcart = require('../controllers/purchase/cart.controller');
+const  checkout  = require("../controllers/purchase/checkout.controller");
+const  purchase  = require("../controllers/purchase/purchase.controller");
+const shopController = require("../controllers/cart/shop.controller");
 
 
 const SCOPES = [
@@ -27,7 +29,8 @@ router.get("/profile", user.profile);
 
 //On your skin shop
 router.get("/cart", shopcart.cart)
-
+router.get("/purchase", purchase.purchase)
+router.get("/checkout", checkout.checkout)
 
 
 

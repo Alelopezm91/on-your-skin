@@ -39,7 +39,12 @@ const menProductsSchema = new Schema(
       },
       parent: {
         type: Boolean
+      },
+      RSVP: {
+        type: Number,
+        required: true
       }
+      
   
   },
   { timestamps: true })
