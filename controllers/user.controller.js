@@ -2,6 +2,7 @@ const Like = require("../models/like.model");
 
 module.exports.profile = (req, res, next) => {
   Like.find({ user: req.user.id })
+  .populate("product")
     .then((likes) => {
       console.log(likes);
       res.render("users/profile", { likes });

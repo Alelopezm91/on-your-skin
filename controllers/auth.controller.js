@@ -94,12 +94,3 @@ module.exports.logout = (req, res, next) => {
 };
 
  
-
-
-
-module.exports.login = (req,res,next) =>{
-    res.render('auth/login')
-}
-module.exports.dologin = (req,res,next) =>{
-
-}

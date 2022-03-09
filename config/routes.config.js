@@ -23,7 +23,7 @@ router.get("/products/detail/:id", products.detail);
 router.get("/products/:page", products.list);
 
 //On your skin routes
-router.get('/', authMiddleware.isAuthenticated, misc.home) 
+router.get('/', misc.home) 
 
 //Auth routes//
 router.get("/register", auth.register);

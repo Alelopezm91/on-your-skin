@@ -11,7 +11,7 @@ module.exports.list = (req, res, next) => {
   const category = req.query.category 
   Like.find({user: req.user.id})
   .then(likes=>{
-Products.find({
+  return Products.find({
   parent: true,
   ...(category && { fashion_product_type: category }),
 })

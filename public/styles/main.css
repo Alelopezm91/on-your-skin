@@ -49,3 +49,31 @@ body{
   align-items: center;
   justify-content: center;
 }
+
+.carousel-height{
+    width: 100%;
+    height: 770px;
+}
+
+.carousel img {
+  display: block;
+  max-width: 100%;
+  height: 800px;
+}
+
+.home-cards img{
+    height: 200px;
+    width: 200px;
+}
+
+.home-cards{
+    display:flex;
+    justify-content: center;
+    margin-left: 7px;
+    margin-right:7px;
+}
+
+.profile-img{
+    width:100px;
+    height:100px;
+}

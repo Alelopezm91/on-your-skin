@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
     match: [PASSWORD_PATTERN, "password needs at least 8 characters man!"],
     required: "Password is required",
   },
+  image: {
+    type: String,
+    default:
+      "https://media.istockphoto.com/vectors/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-vector-id1305665241?b=1&k=20&m=1305665241&s=170667a&w=0&h=q1CXsGNkJdfbG3oHEtnnp2lXruwLwzzKLwO6DFUKurg=",
+  },
   active: {
     type: Boolean,
     default: false,
