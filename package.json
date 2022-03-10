@@ -32,6 +32,9 @@
     "seed": "node ./bin/seed.js",
     "start": "node app.js"
   },
+  "engines": {
+  "node": "16.13.0"
+}
   "author": "",
   "license": "ISC",
   "description": ""
