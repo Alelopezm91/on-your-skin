@@ -21,20 +21,20 @@
   },
   "name": "on-your-skin",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Alelopezm91/on-your-skin"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e hbs,css,js app.js",
-    "seed": "node ./bin/seed.js",
+    "dev": "nodemon -e hbs,js,css app.js",
+    "seed": "node ./bin/seeds.js",
     "start": "node app.js"
   },
   "engines": {
-  "node": "16.13.0"
-}
+    "node": "16.13.0"
+  },
   "author": "",
   "license": "ISC",
   "description": ""
