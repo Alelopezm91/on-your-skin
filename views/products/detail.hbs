@@ -24,7 +24,8 @@
             <h3 class="mb-4">  {{product.RSVP}} €</h3>
             <div>
                 {{#each variants as |variant|}}
-                <button type="button" class="btn-sizes btn btn-outline-primary p-2 mb-4">{{variant.sizes}}</button>
+                <button type="button" href="/underwear/cart/{{variant._id}}"class="btn-sizes btn btn-outline-primary p-2 mb-4">{{variant.sizes}}</button>
+
                 {{/each}}
             </div>
 
@@ -34,4 +35,6 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/axios.js"></script>
 

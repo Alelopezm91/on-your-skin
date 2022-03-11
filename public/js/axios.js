@@ -17,3 +17,19 @@ document.querySelectorAll(".like-action").forEach((btn) => {
     likeProduct(event.target.dataset.id, event.target);
   };
 });
+
+const checkOut = (id, icon) =>
+  httpClient
+    .post(`/underwear/cart/${id}`)
+    .then(() => {
+      icon.classList.toggle("icon-addedToCart");
+    })
+    .catch((err) => console.error(err))
+    .finally(() => icon.classList.remove("icon-events-none"));
+
+document.querySelectorAll(".addToCart-action").forEach((btn) => {
+  btn.onclick = (event) => {
+    btn.classList.add("icon-events-none");
+    likeProduct(event.target.dataset.id, event.target);
+  };
+});

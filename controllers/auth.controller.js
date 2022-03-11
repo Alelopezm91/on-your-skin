@@ -9,7 +9,7 @@ module.exports.register = (req,res,next) => {
 }
 
 module.exports.doRegister = (req,res,next) =>{
- const user = { name, email, password} = req.body
+ const user = req.body
 
  const renderWithErrors = (errors) =>{
      res.render('auth/register', {
@@ -46,7 +46,7 @@ module.exports.activate = (req, res, next) => {
   User.findOneAndUpdate(
     {
       activationToken,
-      active: false,
+      active: false
     },
     { active: true }
   )

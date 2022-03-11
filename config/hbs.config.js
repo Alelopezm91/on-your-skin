@@ -36,3 +36,13 @@ hbs.registerHelper("userLikedProducts", function (options) {
     return options.inverse(this);
   }
 });
+
+hbs.registerHelper("addedToCart", function (options) {
+  const { product, added} = options.hash;
+
+  if (product && added && added.some((add) => add.product == product.id)) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});

@@ -5,6 +5,7 @@ const products = require("../controllers/products.controller");
 const user = require("../controllers/user.controller");
 const auth = require("../controllers/auth.controller");
 const passport = require("passport");
+const checkout= require("../controllers/cart.controller")
 const authMiddleware = require("../middlewares/auth.middleware");
 
 
@@ -41,6 +42,9 @@ router.get("/logout", auth.logout);
 /* User routes */
 router.get('/profile', authMiddleware.isAuthenticated, user.profile)
 router.post('/like/:id', authMiddleware.isAuthenticated, user.doLike)
+
+
+router.post("/underwear/cart/:id", checkout.doCreate);
 
 
 

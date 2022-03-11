@@ -17,10 +17,16 @@ module.exports.doLike = (req, res, next) => {
   Like.findOneAndDelete({ product: prodId, user: userId })
     .then((like) => {
       if (like) {
-        res.status(200).send({ success: "Like remove from DDBB" });
+        res
+          .header("Access - Control - Allow - Origin","*")
+          .status(200)
+          .send({ success: "Like remove from DDBB" });
       } else {
         return Like.create({ product: prodId, user: userId }).then(() => {
-          res.status(201).send({ success: "Like added to DDBB" });
+          res
+            .header("Access - Control - Allow - Origin", "*")
+            .status(201)
+            .send({ success: "Like added to DDBB" });
         });
       }
     })
