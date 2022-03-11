@@ -5,6 +5,7 @@ const express = require("express");
 const logger = require("morgan");
 const path = require("path");
 const passport=require('passport')
+const cors = require("cors");
 
 require("./config/db.config");
 require("./config/hbs.config");
@@ -17,6 +18,17 @@ const app= express ()
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(logger("dev"));
+
+app.options("*", cors());
+app.use(cors());
+
+app.get("/like/:id", function (req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
+});
+
+app.listen(80, function () {
+  console.log("CORS-enabled web server listening on port 80");
+});
 
 app.use(sessionConfig);
 
