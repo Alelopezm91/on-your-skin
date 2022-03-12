@@ -6,6 +6,7 @@ const user = require("../controllers/user.controller");
 const auth = require("../controllers/auth.controller");
 const passport = require("passport");
 const authMiddleware = require("../middlewares/auth.middleware");
+const shop = require('../controllers/cart.controller')
 
 
 
@@ -24,6 +25,8 @@ router.get("/products/:page", products.list);
 
 //On your skin routes
 router.get('/', misc.home) 
+
+//Shop route
 
 //Auth routes//
 router.get("/register", auth.register);

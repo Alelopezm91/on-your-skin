@@ -13,14 +13,33 @@ const userSchema = new mongoose.Schema({
         zipCode: Number,
     },
     RSVP: {
-        type: Number
+        type: Number,
+        required: true
     },
     image: {
         type: Schema.Types.ObjectId,
-        ref: 'men-products'
+        ref: 'men-products',
+        required: true
+    },
+    fashion_main_description: {
+      type: String,
+      required : true
     }
-}) 
+});
 
+const done = 0;
+for(let i = 0; i< userSchema.length; i++) {
+    userSchema[i].save(function(err, result){
+        done++;
+        if(done === userSchema.length) {
+            exit();
+        }
+    });
+}
+
+function exit() {
+    mongoose.disconnect();
+}
 
 const Product = mongoose.model('products', userSchema)
 module.exports = Product 
