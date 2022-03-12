@@ -1,5 +1,5 @@
 const httpClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://on-your-skin.herokuapp.com",
 });
 
 const likeProduct= (id, icon) =>
