@@ -43,7 +43,7 @@ router.get("/logout", auth.logout);
 
 /* User routes */
 router.get('/profile', authMiddleware.isAuthenticated, user.profile)
-router.post('/like/:id', authMiddleware.isAuthenticated, user.doLike)
+router.post('/like/:id', user.doLike)
 
 
 
